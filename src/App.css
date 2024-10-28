@@ -1,0 +1,215 @@
+html {
+    box-sizing: border-box;
+}
+
+*::before, *::after, * {
+    box-sizing: inherit;
+    margin: unset;
+    padding: unset;
+}
+
+body {
+    font-size: 1rem;
+}
+
+img {
+    object-fit: fill;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+p, a, li {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.btn {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: hsla(33, 100%, 96%, 1);
+    padding: 2.25em 1.625em;
+}
+
+.logo a {
+    text-transform: uppercase;
+    font-size: clamp(1.21875rem, 1.0977rem + 0.5164vw, 1.584rem);
+    font-weight: 900;
+    color: hsla(0, 0%, 0%, 1);
+}
+
+.nav .nav-list {
+    display: flex;
+    gap: .8em;
+}
+
+.nav .nav-link {
+    color: hsla(0, 0%, 30%, 1);
+
+    font-weight: 600;
+}
+
+.nav .nav-link:hover, .nav .nav-link.active {
+    color: hsla(0, 0%, 9%, 1);
+    text-decoration: underline;
+    text-decoration-color: inherit;
+    -webkit-transition: color 200ms ease-in-out;
+    -moz-transition: color 200ms ease-in-out;
+    -ms-transition: color 200ms ease-in-out;
+    -o-transition: color 200ms ease-in-out;
+    transition: color 200ms ease-in-out;
+}
+
+.bg-img {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-image: url('assets/mountain.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 87vmin;
+}
+
+.overlay {
+    position: absolute;
+    background: hsla(0, 0%, 0%, 0.46);
+    inset: 0;
+}
+
+.intro-section {
+    position: relative;
+    z-index: 1;
+    padding: 4.11em 1.682em;
+    color: hsla(0, 0%, 100%, 1);
+    max-width: min(100%, 750px);
+    margin: 0 auto;
+}
+
+.intro-section > h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: .629em;
+}
+
+.intro-section > p {
+    font-size: 1rem;
+    margin-bottom: 3.23em;
+    font-weight: 500;
+}
+
+.intro-section > .btn {
+    width: min(100%, 300px);
+    font-size: .996rem;
+    text-align: center;
+    padding: .673em 0;
+    border-radius: .3125em;
+    font-weight: 700;
+    background-color: hsla(25, 100%, 61%, 1);
+}
+
+.main-wrapper {
+    background-color: hsla(33, 100%, 96%, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper .about-section {
+    width: min(85%, 950px);
+    margin: 0 auto;
+    padding: 1.226em .241em;
+    color: hsla(0, 0%, 9%, 1);
+}
+
+.main-wrapper .about-section > h1 {
+    font-size: clamp(1.5625rem, 1.3097rem + 1.0786vw, 2rem);
+    font-weight: 700;
+    margin-bottom: .979em;
+}
+
+.main-wrapper .about-section h1 + p {
+    margin-bottom: 1em;
+}
+.main-wrapper .about-section p {
+    font-weight: 500;
+}
+
+.main-wrapper .about-section p:last-of-type {
+    margin-bottom: 3.437em;
+}
+
+.main-wrapper .about-section .cto {
+    background-color: hsla(33, 100%, 78%, 1);
+    border-radius: 0.313em;
+    padding: 1em;
+}
+
+.main-wrapper .about-section .cto h1,
+.main-wrapper .about-section .cto h2 {
+    font-size: clamp(1.25rem, 0.8166rem + 1.849vw, 2rem);
+    font-weight: 700;
+}
+.main-wrapper .about-section .cto h2{
+    margin-bottom: .781em;
+}
+.main-wrapper .about-section .cto a {
+    background-color: hsla(0, 0%, 9%, 1);
+    font-weight: 700;
+    color: hsla(0, 0%, 100%, 1);
+    padding: .813em 1.375em;
+    border-radius: 0.625em;
+}
+
+.main-wrapper .img-wrapper {
+    order: -1;
+    height: 57vmin;
+    width: 100%;
+}
+
+.main-wrapper .img-wrapper > img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.footer {
+    padding: 1.605em 0;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: hsla(0, 0%, 15%, 1);
+    color: hsla(0, 0%, 67%, 1);
+}
+@media only screen and (min-width: 594px) {
+    .main-wrapper .about-section .cto{
+        padding: 2em 2.3125em;
+
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .header {
+        padding: 1em 2.5em;
+    }
+
+    .intro-section {
+        padding: 3.11em 1.682em;
+    }
+
+    .main-wrapper .about-section {
+        padding: 3.052em 1.682em;
+    }
+}

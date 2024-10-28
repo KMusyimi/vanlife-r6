@@ -4,6 +4,7 @@ import Home from './views/Home.jsx'
 import About from './views/About.jsx'
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import Vans from './views/Vans.jsx'
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home/>}/>
                     <Route path='/about' element={<About/>}/>
+                    <Route path='/vans' element={<Vans/>}/>
                 </Routes>
             </Router>
             <Footer/>

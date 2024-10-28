@@ -22,10 +22,12 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
 a:hover {
     scale: .99;
     transition: scale 200ms ease-in-out;
 }
+
 li {
     list-style: none;
 }
@@ -85,7 +87,7 @@ p, a, li {
     background-image: url('assets/mountain.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: calc(100vmax - 4.5em + 3.21em);
+    height: calc(100dvh - (4.5em + 3.21em));
 }
 
 .overlay {
@@ -93,10 +95,12 @@ p, a, li {
     background: hsla(0, 0%, 0%, 0.46);
     inset: 0;
 }
-.main .intro-section,
-.main .about-section {
+
+.sect-width {
     width: 95%;
+    margin: auto;
 }
+
 .intro-section {
     position: relative;
     z-index: 1;
@@ -148,6 +152,7 @@ p, a, li {
 .main-wrapper .about-section h1 + p {
     margin-bottom: 1em;
 }
+
 .main-wrapper .about-section p {
     font-weight: 500;
 }
@@ -167,9 +172,11 @@ p, a, li {
     font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
     font-weight: 700;
 }
-.main-wrapper .about-section .cto h2{
+
+.main-wrapper .about-section .cto h2 {
     margin-bottom: .781em;
 }
+
 .main-wrapper .about-section .cto a {
     text-align: center;
     background-color: hsla(0, 0%, 9%, 1);
@@ -191,6 +198,120 @@ p, a, li {
     height: 100%;
     width: 100%;
 }
+.vans-container{
+    background-color: hsla(33, 100%, 96%, 1);
+}
+.vans-section {
+    padding: 1.695em 0.822em;
+}
+
+.vans-section .vans-header {
+    margin-bottom: 3.481em;
+}
+
+.vans-section .vans-header > h1 {
+    font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 0.698em;
+}
+
+.vans-section .vans-header > nav,
+.vans-section .vans-header > nav ul {
+    display: flex;
+    align-items: center;
+}
+
+.vans-section .vans-header > nav {
+    justify-content: space-between;
+}
+
+.vans-section .vans-header > nav ul:first-of-type {
+    display: flex;
+    gap: 1.25em;
+}
+.vans-section .vans-header > nav ul a {
+    color: hsla(0, 0%, 30%, 1);
+    font-size: clamp(0.875rem, 0.4063rem + 2vw, 1rem);
+}
+
+.vans-section .vans-header > nav ul:last-of-type a {
+    text-decoration: underline;
+}
+
+.vans-section .vans-header > nav ul:first-of-type a {
+    background: hsla(33, 100%, 91%, 1);
+    border-radius: .3125em;
+    padding: 0.438em;
+    text-transform: capitalize;
+}
+
+.vans-section .cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(229px, 1fr));
+    align-items: center;
+    justify-content: center;
+    gap: 1.682em;
+    margin-bottom: calc(5.201em - 1.682em);
+}
+
+.vans-section .cards-wrapper .card {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.vans-section .cards-wrapper .card header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+
+.vans-section .cards-wrapper .card header > * {
+    font-weight: 600;
+}
+
+.vans-section .cards-wrapper .card h1 {
+    font-size: clamp(1rem, 0.0625rem + 4vw, 1.25rem);
+    text-wrap: nowrap;
+}
+
+.vans-section .cards-wrapper .card .price {
+    font-size: 1.245rem;
+    position: relative;
+    justify-self: right;
+}
+.vans-section .cards-wrapper .card .price > .period {
+    position: absolute;
+    font-size: .875rem;
+    bottom: -1.15em;
+    right: 0;
+}
+.vans-section .cards-wrapper .card header > a{
+    color: hsla(33, 100%, 91%, 1);
+    padding: .25em 0.872em;
+    width: fit-content;
+    border-radius: 0.313em;
+}
+.vans-section .cards-wrapper .card header > a.tag-simple{
+    background-color: hsla(14, 70%, 61%, 1);
+
+}.vans-section .cards-wrapper .card header > a.tag-luxury{
+     background-color: hsla(0, 0%, 9%, 1);
+
+ }.vans-section .cards-wrapper .card header > a.tag-rugged{
+      background-color: hsla(176, 69%, 22%, 1);
+
+  }
+.vans-section .cards-wrapper .card figure {
+    align-self: center;
+    order: -1;
+    width: 100%;
+    margin-bottom: .305em;
+}
+
+.vans-section .cards-wrapper .card img {
+    border-radius: 0.313em;
+}
 
 .footer {
     padding: 1.605em 0;
@@ -199,21 +320,27 @@ p, a, li {
     background-color: hsla(0, 0%, 15%, 1);
     color: hsla(0, 0%, 67%, 1);
 }
-@media only screen and (min-width: 650px){
-    .main .intro-section,
-    .main .about-section {
-        width: min(90%, 900px);
 
+@media only screen and (min-width: 650px) {
+    .sect-width {
+        width: min(90%, 900px);
+    }
+
+    .vans-section .vans-header > nav ul:first-of-type a {
+        padding: 0.438em 1.5625em;
     }
 }
+
 @media only screen and (min-width: 1024px) {
     .header {
         padding: 1.25em 2.5em;
     }
-    .bg-img{
-        height: calc(100vmin - calc(2.5em + 3.21em));
+
+    .bg-img {
+        height: calc(100dvh - (2.5em + 3.21em));
 
     }
+
     .intro-section {
         padding: 3.11em 1.682em;
     }

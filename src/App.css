@@ -85,7 +85,6 @@ p, a, li {
     background-image: url('assets/mountain.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
     height: calc(100vmax - 4.5em + 3.21em);
 }
 

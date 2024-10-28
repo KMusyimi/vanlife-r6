@@ -8,7 +8,10 @@ function Nav() {
     const [active, setActive] = useState(false);
     function handleClick(e){
         setActive(!active);
-        console.log('link handle', active)
+        document.querySelectorAll('.header a').forEach((el) => {
+            el.classList.remove('active');
+        })
+        e.target.classList.add('active');
 
     }
     return (
@@ -16,7 +19,7 @@ function Nav() {
             <ul className='nav-list'>
                 {paths.map((path, idx) => {
                     return <li key={`link-${id}-${idx + 1}`}>
-                        <Link className={`nav-link ${active? "active" : ''}`}
+                        <Link className={`nav-link`}
                               onClick={handleClick} to={path.path}>{path.name}</Link>
                     </li>
                 })}

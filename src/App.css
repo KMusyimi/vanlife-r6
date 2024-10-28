@@ -18,10 +18,14 @@ img {
 }
 
 a {
+    display: block;
     text-decoration: none;
     color: inherit;
 }
-
+a:hover {
+    scale: .99;
+    transition: scale 200ms ease-in-out;
+}
 li {
     list-style: none;
 }
@@ -91,13 +95,15 @@ p, a, li {
     background: hsla(0, 0%, 0%, 0.46);
     inset: 0;
 }
-
+.main .intro-section,
+.main .about-section {
+    width: 95%;
+}
 .intro-section {
     position: relative;
     z-index: 1;
     padding: 4.11em 1.682em;
     color: hsla(0, 0%, 100%, 1);
-    max-width: min(100%, 750px);
     margin: 0 auto;
 }
 
@@ -113,8 +119,8 @@ p, a, li {
     font-weight: 500;
 }
 
-.intro-section > .btn {
-    width: min(100%, 300px);
+.intro-section > a {
+    width: min(100%, 350px);
     font-size: .996rem;
     text-align: center;
     padding: .673em 0;
@@ -130,9 +136,8 @@ p, a, li {
 }
 
 .main-wrapper .about-section {
-    width: min(85%, 950px);
     margin: 0 auto;
-    padding: 1.226em .241em;
+    padding: 2em 2.3125em;
     color: hsla(0, 0%, 9%, 1);
 }
 
@@ -156,23 +161,25 @@ p, a, li {
 .main-wrapper .about-section .cto {
     background-color: hsla(33, 100%, 78%, 1);
     border-radius: 0.313em;
-    padding: 1em;
+    padding: 3.052em 1.682em;
 }
 
 .main-wrapper .about-section .cto h1,
 .main-wrapper .about-section .cto h2 {
-    font-size: clamp(1.25rem, 0.8166rem + 1.849vw, 2rem);
+    font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
     font-weight: 700;
 }
 .main-wrapper .about-section .cto h2{
     margin-bottom: .781em;
 }
 .main-wrapper .about-section .cto a {
+    text-align: center;
     background-color: hsla(0, 0%, 9%, 1);
     font-weight: 700;
     color: hsla(0, 0%, 100%, 1);
     padding: .813em 1.375em;
     border-radius: 0.625em;
+    width: fit-content;
 }
 
 .main-wrapper .img-wrapper {
@@ -194,9 +201,10 @@ p, a, li {
     background-color: hsla(0, 0%, 15%, 1);
     color: hsla(0, 0%, 67%, 1);
 }
-@media only screen and (min-width: 594px) {
-    .main-wrapper .about-section .cto{
-        padding: 2em 2.3125em;
+@media only screen and (min-width: 650px){
+    .main .intro-section,
+    .main .about-section {
+        width: min(90%, 900px);
 
     }
 }

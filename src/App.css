@@ -42,6 +42,33 @@ p, a, li {
     cursor: pointer;
     border: none;
 }
+.bg-color {
+    background-color: hsla(33, 100%, 96%, 1);
+}
+.tag {
+    color: hsla(33, 100%, 91%, 1);
+    padding: .25em 0.872em;
+    width: fit-content;
+    border-radius: 0.313em;
+}
+
+.tag.tag-simple {
+    background-color: hsla(14, 70%, 61%, 1);
+}
+
+.tag.tag-luxury {
+    background-color: hsla(0, 0%, 9%, 1);
+
+}
+
+.tag.tag-rugged {
+    background-color: hsla(176, 69%, 22%, 1);
+
+}
+
+.card-img {
+    border-radius: 0.313em;
+}
 
 .header {
     position: sticky;
@@ -87,7 +114,7 @@ p, a, li {
     display: flex;
     align-items: center;
     position: relative;
-    background-image: url('assets/mountain.svg');
+    background-image: url('./assets/mountain.svg');
     background-repeat: no-repeat;
     background-size: cover;
     height: calc(100dvh - (4.5em + 3.21em));
@@ -201,9 +228,11 @@ p, a, li {
     height: 100%;
     width: 100%;
 }
-.vans-container{
+
+.vans-container {
     background-color: hsla(33, 100%, 96%, 1);
 }
+
 .vans-section {
     padding: 1.695em 0.822em;
 }
@@ -232,6 +261,7 @@ p, a, li {
     display: flex;
     gap: 1.25em;
 }
+
 .vans-section .vans-header > nav ul a {
     color: hsla(0, 0%, 30%, 1);
     font-size: clamp(0.875rem, 0.4063rem + 2vw, 1rem);
@@ -257,7 +287,7 @@ p, a, li {
     margin-bottom: calc(5.201em - 1.682em);
 }
 
-.vans-section .cards-wrapper .card {
+.vans-section .cards-wrapper .card > a {
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -277,45 +307,86 @@ p, a, li {
     font-size: clamp(1rem, 0.0625rem + 4vw, 1.25rem);
     text-wrap: nowrap;
 }
+
 .vans-section .cards-wrapper .card h1 > a {
     font-weight: inherit;
 }
+
 .vans-section .cards-wrapper .card .price {
     font-size: 1.245rem;
     position: relative;
     justify-self: right;
 }
+
 .vans-section .cards-wrapper .card .price > .period {
     position: absolute;
     font-size: .875rem;
     bottom: -1.15em;
     right: 0;
 }
-.vans-section .cards-wrapper .card header > a{
-    color: hsla(33, 100%, 91%, 1);
-    padding: .25em 0.872em;
-    width: fit-content;
-    border-radius: 0.313em;
-}
-.vans-section .cards-wrapper .card header > a.tag-simple{
-    background-color: hsla(14, 70%, 61%, 1);
 
-}.vans-section .cards-wrapper .card header > a.tag-luxury{
-     background-color: hsla(0, 0%, 9%, 1);
-
- }.vans-section .cards-wrapper .card header > a.tag-rugged{
-      background-color: hsla(176, 69%, 22%, 1);
-
-  }
-.vans-section .cards-wrapper .card figure {
-    align-self: center;
+.vans-section .cards-wrapper .card a figure {
     order: -1;
-    width: 100%;
     margin-bottom: .305em;
 }
 
-.vans-section .cards-wrapper .card img {
-    border-radius: 0.313em;
+.details-container {
+    padding: 2.491em 1.682em;
+}
+
+.details-container > span {
+    display: inline-flex;
+    align-items: center;
+    gap: .679em;
+    margin-bottom: 2.55em;
+}
+
+.details-container > span .left-arr {
+    font-size: 1.2em;
+    color: hsla(0, 0%, 52%, 1)
+}
+
+.details-container > span a {
+    font-weight: 500;
+    color: hsla(40, 5%, 12%, 1);
+    text-decoration: underline;
+    text-decoration-color: hsla(0, 0%, 52%, 1);
+}
+
+.van-details-card {
+    display: flex;
+    flex-direction: column;
+}
+.van-details-card .tag {
+    margin-bottom: .637em;
+}
+.van-details-card h1 {
+    font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
+    font-weight: 700;
+}
+.van-details-card .price {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: .408em;
+}
+.van-details-card .description {
+    font-weight: 500;
+    margin-bottom: 1.365em;
+}
+.van-details-card .rent-link {
+    background-color: hsla(25, 100%, 61%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    font-weight: 700;
+    width: min(100%, 400px);
+
+    padding-block: .623em;
+    text-align: center;
+    margin-bottom: 2.803em;
+    border-radius: .313em;
+}
+.van-details-card figure {
+    order: -1;
+    margin-bottom: 3.15em;
 }
 
 .footer {
@@ -325,11 +396,13 @@ p, a, li {
     background-color: hsla(0, 0%, 15%, 1);
     color: hsla(0, 0%, 67%, 1);
 }
+
 @media screen and (orientation: landscape) {
-    .bg-img{
+    .bg-img {
         height: fit-content;
     }
 }
+
 @media only screen and (min-width: 650px) {
     .sect-width {
         width: min(90%, 900px);

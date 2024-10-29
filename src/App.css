@@ -43,7 +43,10 @@ p, a, li {
     border: none;
 }
 
-.header {;
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,7 +109,7 @@ p, a, li {
     z-index: 1;
     padding: 4.11em 1.682em;
     color: hsla(0, 0%, 100%, 1);
-    margin: 0 auto;
+    margin: auto;
 }
 
 .intro-section > h1 {
@@ -274,7 +277,9 @@ p, a, li {
     font-size: clamp(1rem, 0.0625rem + 4vw, 1.25rem);
     text-wrap: nowrap;
 }
-
+.vans-section .cards-wrapper .card h1 > a {
+    font-weight: inherit;
+}
 .vans-section .cards-wrapper .card .price {
     font-size: 1.245rem;
     position: relative;
@@ -320,7 +325,11 @@ p, a, li {
     background-color: hsla(0, 0%, 15%, 1);
     color: hsla(0, 0%, 67%, 1);
 }
-
+@media screen and (orientation: landscape) {
+    .bg-img{
+        height: fit-content;
+    }
+}
 @media only screen and (min-width: 650px) {
     .sect-width {
         width: min(90%, 900px);

@@ -20,7 +20,7 @@ export default function Vans() {
             return (
                 <article key={`card-${id + idx}`} className='card'>
                     <header>
-                        <h1>{van.name}</h1>
+                        <h1><Link to={`/vans/${van.id}`}>{van.name}</Link></h1>
                         <p className='price'>${van.price} <span className='period'>/day</span></p>
                         <Link className={`tag-${van.type}`} to={`/vans/${van.type}`}>{van.type}</Link>
                     </header>

@@ -18,13 +18,13 @@ function HostVansDetails() {
         getHostVanDetails();
     }, [params.id]);
     const {name, price, description, imageUrl, type} = hostVan.length > 0 && van(...hostVan);
-    console.log(hostVan)
+
     return (
         <div className="details-container">
-            <div>
+            <Link to='/host/vans' className='back-link'>
                 <span className='left-arr'>{decode('&larr;')}</span>
-                <Link to='/host/vans'>Back to all vans</Link>
-            </div>
+                <span>Back to all vans</span>
+            </Link>
             <div className='details-wrapper'>
                 <figure>
                     <div>

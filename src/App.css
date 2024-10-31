@@ -347,19 +347,20 @@ p, a, li {
     padding: 2.491em 1.682em;
 }
 
-.details-container > div:first-of-type {
+.details-container > .back-link {
     display: inline-flex;
     align-items: center;
     gap: .679em;
     margin-bottom: 2.55em;
 }
 
-.details-container > div:first-of-type .left-arr {
+.details-container > .back-link .left-arr {
     font-size: 1.2em;
-    color: hsla(0, 0%, 52%, 1)
+    color: hsla(0, 0%, 52%, 1);
+    text-decoration: none;
 }
 
-.details-container > div:first-of-type a {
+.details-container > .back-link span {
     font-weight: 500;
     color: hsla(40, 5%, 12%, 1);
     text-decoration: underline;
@@ -448,7 +449,7 @@ p, a, li {
  }
 .host-container .vans-container li img {
     order: -1;
-    width: min(20vmin, 80px);
+    width: min(22vmin, 88px);
 
 }
 .host-container .details-container {

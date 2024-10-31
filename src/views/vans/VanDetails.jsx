@@ -20,10 +20,10 @@ export default function VanDetails() {
     return (
         <div className='bg-color'>
             <div className='details-container sect-width'>
-            <div>
+            <Link to='/vans' className='back-link'>
                 <span className='left-arr'>{decode('&larr;')}</span>
-                <Link to='/vans'>Back to all vans</Link>
-            </div>
+                <span>Back to all vans</span>
+            </Link>
 
                 {van ? (<article className='van-details-card '>
                     <section>

@@ -11,7 +11,6 @@ import Reviews from "./views/host/Reviews.jsx";
 import HostLayout from "./components/HostLayout.jsx";
 import HostVans from "./views/host/HostVans.jsx";
 import HostVanInfo from "./views/host/HostVanInfo.jsx";
-import HostVanLayout from "./components/HostVanLayout.jsx";
 import HostVanPricing from "./views/host/HostVanPricing.jsx";
 import HostVanPhotos from "./views/host/HostVanPhotos.jsx";
 import HostVanDetails from "./views/host/HostVanDetails.jsx";

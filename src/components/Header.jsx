@@ -1,33 +1,31 @@
 import Nav from './Nav'
-import {createContext, useState} from "react";
 import {decode} from "html-entities";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {useId} from "react";
 
-
-const PathContext = createContext(null);
 
 function Header() {
-    const [paths] = useState([
-        {
-            path: '/about',
-            name: 'About',
-        }, {
-            path: '/vans',
-            name: 'Vans',
-        }]);
-    function handleClick() {
-        document.querySelectorAll('.header a').forEach((el) => {
-            el.classList.remove('active');
-        });
+    const id = useId();
+
+    const navLinks = () => {
+        const endpoints = ['host', 'about', 'vans'];
+        return endpoints.map((path, idx) => {
+            return (
+                <li key={`link-${id}-${idx + 1}`}>
+                    <NavLink className={
+                        ({isActive}) => isActive ? 'nav-link active' : 'nav-link'}
+                             to={`/${path}`}>{path}</NavLink>
+                </li>
+            )
+        })
     }
     return (
         <header className='header'>
-            <h1 className='logo'><Link to='/' onClick={handleClick}>{decode('&#35;VanLife')}</Link></h1>
-            <PathContext.Provider value={paths}>
-                <Nav/>
-            </PathContext.Provider>
+            <h1 className='logo'>
+                <NavLink to='/'>{decode('&#35;VanLife')}</NavLink>
+            </h1>
+            <Nav className={'nav header-nav'}>{navLinks()}</Nav>
         </header>)
 }
 
 export default Header;
-export {PathContext}

@@ -7,7 +7,7 @@ export default function Vans() {
     const id = useId();
     useEffect(() => {
         async function getVansData() {
-            const fetchPromise = await fetch('api/vans');
+            const fetchPromise = await fetch('/api/vans');
             const data = await fetchPromise.json();
             setData(data.vans);
         }
@@ -22,9 +22,9 @@ export default function Vans() {
                     <Link to={`/vans/${van.id}`}
                           aria-label={`View details for ${van.name}, priced at ${van.price} per day`}>
                         <header>
-                            <h1>{van.name}</h1>
+                            <h1 className='van-name'>{van.name}</h1>
                             <p className='price'>${van.price} <span className='period'>/day</span></p>
-                            <Link className={`tag tag-${van.type}`} to={`/vans/${van.type}`}>{van.type}</Link>
+                            <p className={`tag tag-${van.type}`}>{van.type}</p>
                         </header>
                         <figure>
                             <img className='card-img' src={van.imageUrl} loading='lazy'

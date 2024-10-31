@@ -20,15 +20,15 @@ export default function VanDetails() {
     return (
         <div className='bg-color'>
             <div className='details-container sect-width'>
-            <span>
+            <div>
                 <span className='left-arr'>{decode('&larr;')}</span>
                 <Link to='/vans'>Back to all vans</Link>
-            </span>
+            </div>
 
                 {van ? (<article className='van-details-card '>
                     <section>
                         <p className={`tag tag-${type}`}>{type}</p>
-                        <h1>{name}</h1>
+                        <h1 className='van-name'>{name}</h1>
                         <p className='price'>${price}/day</p>
                         <p className='description'>{description}</p>
                         <Link className='rent-link' to='/vans/rent/:id'>Rent this van</Link>

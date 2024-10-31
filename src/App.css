@@ -37,14 +37,20 @@ p, a, li {
     font-weight: 400;
 }
 
+.fw-700 {
+    font-weight: 700;
+}
+
 .btn {
     font-family: inherit;
     cursor: pointer;
     border: none;
 }
+
 .bg-color {
     background-color: hsla(33, 100%, 96%, 1);
 }
+
 .tag {
     color: hsla(33, 100%, 91%, 1);
     padding: .25em 0.872em;
@@ -95,6 +101,7 @@ p, a, li {
 }
 
 .nav .nav-link {
+    text-transform: capitalize;
     color: hsla(0, 0%, 30%, 1);
     font-weight: 600;
 }
@@ -103,6 +110,7 @@ p, a, li {
     color: hsla(0, 0%, 9%, 1);
     text-decoration: underline;
     text-decoration-color: inherit;
+    font-weight: 700;
     -webkit-transition: color 200ms ease-in-out;
     -moz-transition: color 200ms ease-in-out;
     -ms-transition: color 200ms ease-in-out;
@@ -129,6 +137,11 @@ p, a, li {
 .sect-width {
     width: 95%;
     margin: auto;
+}
+
+.van-name {
+    font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
+    font-weight: 700;
 }
 
 .intro-section {
@@ -334,19 +347,19 @@ p, a, li {
     padding: 2.491em 1.682em;
 }
 
-.details-container > span {
+.details-container > div:first-of-type {
     display: inline-flex;
     align-items: center;
     gap: .679em;
     margin-bottom: 2.55em;
 }
 
-.details-container > span .left-arr {
+.details-container > div:first-of-type .left-arr {
     font-size: 1.2em;
     color: hsla(0, 0%, 52%, 1)
 }
 
-.details-container > span a {
+.details-container > div:first-of-type a {
     font-weight: 500;
     color: hsla(40, 5%, 12%, 1);
     text-decoration: underline;
@@ -357,36 +370,136 @@ p, a, li {
     display: flex;
     flex-direction: column;
 }
+
 .van-details-card .tag {
     margin-bottom: .637em;
 }
+
 .van-details-card h1 {
     font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
     font-weight: 700;
 }
+
 .van-details-card .price {
     font-weight: 700;
     font-size: 1.5rem;
     margin-bottom: .408em;
 }
+
 .van-details-card .description {
     font-weight: 500;
     margin-bottom: 1.365em;
 }
+
 .van-details-card .rent-link {
     background-color: hsla(25, 100%, 61%, 1);
     color: hsla(0, 0%, 100%, 1);
     font-weight: 700;
-    width: min(100%, 400px);
+    width: min(100%, 445px);
 
     padding-block: .623em;
     text-align: center;
     margin-bottom: 2.803em;
     border-radius: .313em;
 }
+
 .van-details-card figure {
     order: -1;
     margin-bottom: 3.15em;
+    width: min(100%, 445px);
+
+}
+
+.host-container {
+    padding: 2.02em 1.625em;
+}
+
+.host-container > header {
+    margin-bottom: 2em;
+}
+.host-container > header h1 {
+    font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
+}
+.host-container .host-nav{
+    margin-bottom: 3.438em;
+}
+
+.host-container .vans-container li{
+    background-color: hsla(0, 0%, 100%, 1);
+    border-radius: .375em;
+    margin-bottom: 1em;
+}
+.host-container .vans-container li:last-of-type{
+    margin-bottom: 2em;
+}
+.host-container .vans-container li a {
+    display: flex;
+    align-items: center;
+    gap: 1.06em;
+    padding: 1.13em 1.51em;
+
+}
+.host-container .vans-container li h1{
+    font-size: clamp(1.25rem, 0.3125rem + 4vw, 1.5rem);
+}
+.host-container .vans-container li .price{
+     color: hsla(0, 0%, 30%, 1);
+     font-weight: 500;
+ }
+.host-container .vans-container li img {
+    order: -1;
+    width: min(20vmin, 80px);
+
+}
+.host-container .details-container {
+    padding: unset;
+}
+
+.host-container .details-wrapper {
+    background-color: hsla(0, 0%, 100%, 1);
+    padding: 1.56em;
+    border-radius: .375em;
+    margin-bottom: 2.813em;
+}
+.host-container .details-wrapper figure {
+    display: flex;
+    gap: 1.24em;
+    margin-bottom: 1.683em;
+}
+.host-container .details-wrapper figure > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+.host-container .details-wrapper figure .tag{
+    font-size: clamp(0.814375rem, 0.5823rem + 0.99vw, 1rem);
+}
+.host-container .details-wrapper figure .price-wrapper{
+    font-size: clamp(1rem, 0.7234rem + 1.18vw, 1.22125rem);
+}
+.host-container .details-wrapper figure .van-name {
+     font-size: clamp(1.25rem, 0.7766rem + 2.02vw, 1.62875rem);
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+.host-container .details-wrapper figure img{
+    order: -1;
+    width: min(25vmin, 160px);
+    height: min(25vmin, 160px);
+}
+.host-container .details-wrapper > div .nav{
+    margin-bottom: 1.709em;
+}.host-container .details-wrapper > div p{
+    margin-bottom: 0.938em;
+}
+ .host-container .details-wrapper > div p:not(:nth-of-type(3)){
+     text-transform: capitalize;
+
+ }
+.host-container .details-wrapper > div p > span{
+    margin-right: .3em;
 }
 
 .footer {

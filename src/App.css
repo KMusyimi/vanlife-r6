@@ -418,21 +418,26 @@ p, a, li {
 .host-container > header {
     margin-bottom: 2em;
 }
+
 .host-container > header h1 {
     font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
 }
-.host-container .host-nav{
+
+.host-container .host-nav {
     margin-bottom: 3.438em;
 }
 
-.host-container .vans-container li{
+.host-container .vans-container li {
     background-color: hsla(0, 0%, 100%, 1);
     border-radius: .375em;
     margin-bottom: 1em;
+    width: 100%;
 }
-.host-container .vans-container li:last-of-type{
+
+.host-container .vans-container li:last-of-type {
     margin-bottom: 2em;
 }
+
 .host-container .vans-container li a {
     display: flex;
     align-items: center;
@@ -440,18 +445,22 @@ p, a, li {
     padding: 1.13em 1.51em;
 
 }
-.host-container .vans-container li h1{
+
+.host-container .vans-container li h1 {
     font-size: clamp(1.25rem, 0.3125rem + 4vw, 1.5rem);
 }
-.host-container .vans-container li .price{
-     color: hsla(0, 0%, 30%, 1);
-     font-weight: 500;
- }
+
+.host-container .vans-container li .price {
+    color: hsla(0, 0%, 30%, 1);
+    font-weight: 500;
+}
+
 .host-container .vans-container li img {
     order: -1;
-    width: min(24vmin, 90px);
+    width: min(27vmin, 125px);
 
 }
+
 .host-container .details-container {
     padding: unset;
 }
@@ -462,46 +471,55 @@ p, a, li {
     border-radius: .375em;
     margin-bottom: 2.813em;
 }
+
 .host-container .host-van-info figure {
     display: flex;
     gap: 1.24em;
     margin-bottom: 1.683em;
 }
-.host-container .host-van-info figure > div{
+
+.host-container .host-van-info figure > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
 }
-.host-container .host-van-info figure .tag{
+
+.host-container .host-van-info figure .tag {
     font-size: clamp(0.814375rem, 0.5823rem + 0.99vw, 1rem);
 }
-.host-container .host-van-info figure .price-wrapper{
+
+.host-container .host-van-info figure .price-wrapper {
     font-size: clamp(1rem, 0.7234rem + 1.18vw, 1.22125rem);
 }
+
 .host-container .host-van-info figure .van-name {
-     font-size: clamp(1.25rem, 0.7766rem + 2.02vw, 1.62875rem);
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
+    font-size: clamp(1.25rem, 0.7766rem + 2.02vw, 1.62875rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.host-container .host-van-info figure img{
+
+.host-container .host-van-info figure img {
     order: -1;
     width: min(25vmin, 160px);
     height: min(25vmin, 160px);
 }
-.host-container .host-van-info > .nav{
+
+.host-container .host-van-info > .nav {
     margin-bottom: 1.709em;
 }
 
-.host-container .host-van-info > div p{
+.host-container .host-van-info > div p {
     margin-bottom: 0.938em;
 }
- .host-container .host-van-info > div p:not(:nth-of-type(3)){
-     text-transform: capitalize;
 
- }
-.host-container .host-van-info > div p > span{
+.host-container .host-van-info > div p:not(:nth-of-type(3)) {
+    text-transform: capitalize;
+
+}
+
+.host-container .host-van-info > div p > span {
     margin-right: .3em;
 }
 

@@ -462,7 +462,8 @@ p, a, li {
 }
 
 .host-container .details-container {
-    padding: unset;
+    padding-inline-start: unset;
+    padding-block: 1em;
 }
 
 .host-container .host-van-info {
@@ -502,15 +503,15 @@ p, a, li {
 
 .host-container .host-van-info figure img {
     order: -1;
-    width: min(25vmin, 160px);
-    height: min(25vmin, 160px);
+    width: min(28vmin, 175px);
+    height: min(28vmin, 175px);
 }
 
 .host-container .host-van-info > .nav {
     margin-bottom: 1.709em;
 }
 
-.host-container .host-van-info > div p {
+.host-container .host-van-info > div p:not(.price-wrapper) {
     margin-bottom: 0.938em;
 }
 
@@ -518,9 +519,16 @@ p, a, li {
     text-transform: capitalize;
 
 }
+.host-container .host-van-info > div p:not(.price-wrapper) > span {
+    margin-right: .233em;
+}
 
-.host-container .host-van-info > div p > span {
-    margin-right: .3em;
+.host-container .host-van-info > div p.price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: .23em;
+    font-size: 2.8rem;
+    padding-block: .285em;
 }
 
 .footer {

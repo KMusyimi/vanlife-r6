@@ -449,57 +449,59 @@ p, a, li {
  }
 .host-container .vans-container li img {
     order: -1;
-    width: min(22vmin, 88px);
+    width: min(24vmin, 90px);
 
 }
 .host-container .details-container {
     padding: unset;
 }
 
-.host-container .details-wrapper {
+.host-container .host-van-info {
     background-color: hsla(0, 0%, 100%, 1);
     padding: 1.56em;
     border-radius: .375em;
     margin-bottom: 2.813em;
 }
-.host-container .details-wrapper figure {
+.host-container .host-van-info figure {
     display: flex;
     gap: 1.24em;
     margin-bottom: 1.683em;
 }
-.host-container .details-wrapper figure > div{
+.host-container .host-van-info figure > div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
 }
-.host-container .details-wrapper figure .tag{
+.host-container .host-van-info figure .tag{
     font-size: clamp(0.814375rem, 0.5823rem + 0.99vw, 1rem);
 }
-.host-container .details-wrapper figure .price-wrapper{
+.host-container .host-van-info figure .price-wrapper{
     font-size: clamp(1rem, 0.7234rem + 1.18vw, 1.22125rem);
 }
-.host-container .details-wrapper figure .van-name {
+.host-container .host-van-info figure .van-name {
      font-size: clamp(1.25rem, 0.7766rem + 2.02vw, 1.62875rem);
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
 }
-.host-container .details-wrapper figure img{
+.host-container .host-van-info figure img{
     order: -1;
     width: min(25vmin, 160px);
     height: min(25vmin, 160px);
 }
-.host-container .details-wrapper > div .nav{
+.host-container .host-van-info > .nav{
     margin-bottom: 1.709em;
-}.host-container .details-wrapper > div p{
+}
+
+.host-container .host-van-info > div p{
     margin-bottom: 0.938em;
 }
- .host-container .details-wrapper > div p:not(:nth-of-type(3)){
+ .host-container .host-van-info > div p:not(:nth-of-type(3)){
      text-transform: capitalize;
 
  }
-.host-container .details-wrapper > div p > span{
+.host-container .host-van-info > div p > span{
     margin-right: .3em;
 }
 

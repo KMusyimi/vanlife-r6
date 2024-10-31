@@ -20,7 +20,7 @@ export default function VanDetails() {
     return (
         <div className='bg-color'>
             <div className='details-container sect-width'>
-            <Link to='/vans' className='back-link'>
+            <Link to='..' relative='path' className='back-link'>
                 <span className='left-arr'>{decode('&larr;')}</span>
                 <span>Back to all vans</span>
             </Link>

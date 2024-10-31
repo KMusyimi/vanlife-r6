@@ -14,7 +14,7 @@ function Header() {
                 <li key={`link-${id}-${idx + 1}`}>
                     <NavLink className={
                         ({isActive}) => isActive ? 'nav-link active' : 'nav-link'}
-                             to={`/${path}`}>{path}</NavLink>
+                             to={`${path}`}>{path}</NavLink>
                 </li>
             )
         })

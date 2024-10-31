@@ -1,5 +1,6 @@
 import {useEffect, useId, useState} from "react";
 import {Link} from "react-router-dom";
+
 // TODO: add spinners
 function HostVans() {
     const id = useId();
@@ -30,14 +31,13 @@ function HostVans() {
         })
     }
 
-    return (<>
-        <header>
-            <h1 className='fw-700'>Your listed vans</h1>
-        </header>
-        <div className='vans-container'>
-            <ul className='van-list'>{vansListItems()}</ul>
-        </div>
-    </>)
+    return (
+        <>
+            <header><h1 className='fw-700'>Your listed vans</h1></header>
+            <div className='vans-container'>
+                <ul className='van-list'>{vansListItems()}</ul>
+            </div>
+        </>)
 }
 
 export default HostVans;

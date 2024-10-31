@@ -10,7 +10,11 @@ import Income from "./views/host/Income.jsx";
 import Reviews from "./views/host/Reviews.jsx";
 import HostLayout from "./components/HostLayout.jsx";
 import HostVans from "./views/host/HostVans.jsx";
-import HostVansDetails from "./views/host/HostVansDetails.jsx";
+import HostVanInfo from "./views/host/HostVanInfo.jsx";
+import HostVanLayout from "./components/HostVanLayout.jsx";
+import HostVanPricing from "./views/host/HostVanPricing.jsx";
+import HostVanPhotos from "./views/host/HostVanPhotos.jsx";
+import HostVanDetails from "./views/host/HostVanDetails.jsx";
 
 function App() {
     return (
@@ -25,9 +29,11 @@ function App() {
                         <Route path='host' element={<HostLayout/>}>
                             <Route index element={<Dashboard/>}/>
                             <Route path='income' element={<Income/>}/>
-                            <Route path='vans'>
-                                <Route index element={<HostVans/>}/>
-                                <Route path=':id' element={<HostVansDetails/>}/>
+                            <Route path='vans' element={<HostVans/>}/>
+                            <Route path='vans/:id' element={<HostVanDetails/>}>
+                                <Route index element={<HostVanInfo/>}/>
+                                <Route path='pricing' element={<HostVanPricing/>}/>
+                                <Route path='photos' element={<HostVanPhotos/>}/>
                             </Route>
                             <Route path='reviews' element={<Reviews/>}/>
                         </Route>

@@ -532,6 +532,8 @@ p, a, li {
 }
 
 .footer {
+    position: sticky;
+    bottom: 0;
     padding: 1.605em 0;
     text-align: center;
     text-transform: uppercase;

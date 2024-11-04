@@ -1,25 +1,43 @@
 import {useEffect, useId, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 
 
 export default function Vans() {
-    const [data, setData] = useState([]);
+    const [vans, setVans] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
     const id = useId();
+
+    const typeFilter = searchParams.get("type");
+
+    const vansArr = typeFilter ? vans.filter(van => typeFilter === van.type) : vans;
+
     useEffect(() => {
         async function getVansData() {
             const fetchPromise = await fetch('/api/vans');
             const data = await fetchPromise.json();
-            setData(data.vans);
+            setVans(data.vans);
         }
 
         getVansData();
     }, []);
 
+    function handleFilterChange(key, value) {
+        setSearchParams(prevParams => {
+            if (value === null) {
+                prevParams.delete(key)
+            } else {
+                prevParams.set(key, value)
+            }
+            return prevParams
+        })
+    }
+
     function populateCards() {
-        return data.map((van, idx) => {
+        return vansArr.map((van, idx) => {
             return (
                 <article key={`card-${id + idx}`} className='card'>
-                    <Link to={`/vans/${van.id}`}
+                    <Link to={`${van.id}`}
+                          state={{search: `?${searchParams.toString()}`, type: typeFilter}}
                           aria-label={`View details for ${van.name}, priced at ${van.price} per day`}>
                         <header>
                             <h1 className='van-name'>{van.name}</h1>
@@ -41,16 +59,24 @@ export default function Vans() {
             <section className='vans-section sect-width'>
                 <header className='vans-header'>
                     <h1>Explore our van options</h1>
-                    <nav className='product-nav'>
-                        <ul className='product-list'>
-                            <li><Link to='/vans/simple'>simple</Link></li>
-                            <li><Link to='/vans/luxury'>luxury</Link></li>
-                            <li><Link to='/vans/rugged'>rugged</Link></li>
-                        </ul>
-                        <ul>
-                            <li><Link to='/vans/simple'>Clear filters</Link></li>
-                        </ul>
-                    </nav>
+                    <div className='filters-container'>
+                        <div className='filters-wrapper'>
+                            <button className={`simple ${typeFilter === 'simple'? 'selected': ''}`}
+                                    onClick={() => handleFilterChange("type", "simple")}>simple
+                            </button>
+                            <button className={`luxury ${typeFilter === 'luxury'? 'selected': ''}`}
+                                    onClick={() => handleFilterChange("type", "luxury")}>luxury
+                            </button>
+                            <button className={`rugged ${typeFilter === 'rugged'? 'selected': ''}`}
+                                    onClick={() => handleFilterChange("type", "rugged")}>rugged
+                            </button>
+                        </div>
+                        {typeFilter && <div className='clear-wrapper'>
+                            <button onClick={() => handleFilterChange("type", null)}
+                                    className='clear-filters'>Clear filters
+                            </button>
+                        </div>}
+                    </div>
                 </header>
                 <div className='cards-wrapper'>{populateCards()}</div>
             </section>

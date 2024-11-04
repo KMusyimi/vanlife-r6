@@ -19,7 +19,7 @@ function HostVans() {
         return hostVans !== null && hostVans.map((van, idx) => {
             return (
                 <li key={`${id}-${idx}`}>
-                    <Link to={`/host/vans/${van.id}`}>
+                    <Link to={`${van.id}`}>
                         <section>
                             <h1>{van.name}</h1>
                             <p className='price'>${van.price}/day</p>

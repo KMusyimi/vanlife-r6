@@ -35,7 +35,7 @@ export default function Vans() {
         return <Spinner/>
     }
     if(error){
-        return <h1>There was an error: {error.message}</h1>
+        return <h1 aria-live='assertive'>There was an error: {error.message}</h1>
     }
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {

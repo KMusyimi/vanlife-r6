@@ -489,7 +489,7 @@ p, a, li {
 }
 
 .host-container .details-container {
-    padding-inline-start: unset;
+    padding-inline: unset;
     padding-block: 1em;
 }
 

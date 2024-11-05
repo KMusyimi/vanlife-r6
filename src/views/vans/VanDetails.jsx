@@ -1,21 +1,32 @@
 import {Link, useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {decode} from "html-entities";
+import Spinner from "../../components/Spinner.jsx";
 
 export default function VanDetails() {
     const params = useParams();
     const [van, setVan] = useState(null);
     const location = useLocation();
-    console.log(location);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         async function fetchData() {
+            setLoading(true);
+
             const promise = await fetch(`/api/vans/${params.id}`);
             const data = await promise.json();
             setVan(data.vans);
+            setTimeout(() => setLoading(false), 500);
+
         }
 
         fetchData();
     }, [params.id]);
+
+
+    if (loading) {
+        return <Spinner/>
+    }
 
     const {description, imageUrl, name, price, type} = van !== null && van;
     const search = location.state?.search || "";
@@ -31,7 +42,7 @@ export default function VanDetails() {
                     <span>Back to {searchType} vans</span>
                 </Link>
 
-                {van ? (<article className='van-details-card '>
+                <article className='van-details-card '>
                     <section>
                         <p className={`tag tag-${type}`}>{type}</p>
                         <h1 className='van-name'>{name}</h1>
@@ -43,7 +54,7 @@ export default function VanDetails() {
                         <img className='card-img' src={imageUrl} loading='lazy'
                              alt={`a sample image of ${name}`}/>
                     </figure>
-                </article>) : (<h2>Loading van details</h2>)}
+                </article>
             </div>
         </div>
     )

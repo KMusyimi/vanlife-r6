@@ -1,0 +1,33 @@
+.spinner-container {
+    display: flex;
+    height: 100dvh;
+    align-items: center;
+    justify-content: center;
+}
+.spinner {
+    width:clamp(2.5rem, 1.9583rem + 2.3112vw, 3.4375rem);
+    height: clamp(2.5rem, 1.9583rem + 2.3112vw, 3.4375rem);
+    background-color: hsla(14, 70%, 61%, 1);
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+        -webkit-transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+      }
+}

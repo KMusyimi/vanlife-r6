@@ -2,27 +2,35 @@ import {Link, NavLink, Outlet, useParams} from "react-router-dom";
 import {decode} from "html-entities";
 import {useEffect, useState} from "react";
 import Nav from "../../components/Nav.jsx";
+import Spinner from "../../components/Spinner.jsx";
 
 
 export default function HostVanDetails() {
     const [van, setVan] = useState([]);
     const params = useParams();
+    const [loading, setLoading] = useState(false);
+
     const activeStyles = {
         color: 'hsla(0, 0%, 9%, 1)',
         textDecoration: 'underline',
         textDecorationColor: 'inherit',
         fontWeight: 700
     }
+
     useEffect(() => {
         async function getHostVanDetails() {
+            setLoading(true);
             const fetchPromise = await fetch(`/api/host/vans/${params.id}`);
             const data = await fetchPromise.json();
             setVan(data.vans);
+            setTimeout(() => setLoading(false), 500);
         }
-
         getHostVanDetails();
     }, [params.id]);
 
+    if (loading) {
+        return <Spinner/>
+    }
     return (
         <div className="details-container">
             <Link to='..' relative='path' className='back-link'>

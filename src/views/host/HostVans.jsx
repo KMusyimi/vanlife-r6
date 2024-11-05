@@ -1,19 +1,27 @@
 import {useEffect, useId, useState} from "react";
 import {Link} from "react-router-dom";
+import Spinner from "../../components/Spinner.jsx";
 
 // TODO: add spinners
 function HostVans() {
     const id = useId();
     const [hostVans, setHostVans] = useState(null);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         async function getHostVans() {
+            setLoading(true);
             const fetchPromise = await fetch('/api/host/vans');
             const data = await fetchPromise.json();
             setHostVans(data.vans);
+            setTimeout(() => setLoading(false), 500);
         }
 
         getHostVans();
     }, []);
+
+    if (loading) {
+        return <Spinner/>
+    }
 
     const vansListItems = () => {
         return hostVans !== null && hostVans.map((van, idx) => {

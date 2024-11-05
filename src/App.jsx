@@ -1,4 +1,5 @@
 import './App.css'
+import './spinkit.css'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from './views/Home.jsx'
 import About from './views/About.jsx'

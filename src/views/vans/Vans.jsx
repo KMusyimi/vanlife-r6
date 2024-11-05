@@ -1,26 +1,42 @@
 import {useEffect, useId, useState} from "react";
 import {Link, useSearchParams} from "react-router-dom";
-
+import {getVans} from "../../api";
+import Spinner from "../../components/Spinner.jsx";
 
 export default function Vans() {
     const [vans, setVans] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const id = useId();
 
     const typeFilter = searchParams.get("type");
-
     const vansArr = typeFilter ? vans.filter(van => typeFilter === van.type) : vans;
 
     useEffect(() => {
         async function getVansData() {
-            const fetchPromise = await fetch('/api/vans');
-            const data = await fetchPromise.json();
-            setVans(data.vans);
+            setLoading(true);
+            try {
+                const data = await getVans();
+                setVans(data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setTimeout(() => setLoading(false), 500);
+            }
+
         }
 
         getVansData();
     }, []);
 
+    if (loading) {
+        return <Spinner/>
+    }
+    if(error){
+        return <h1>There was an error: {error.message}</h1>
+    }
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {
             if (value === null) {
@@ -61,13 +77,13 @@ export default function Vans() {
                     <h1>Explore our van options</h1>
                     <div className='filters-container'>
                         <div className='filters-wrapper'>
-                            <button className={`simple ${typeFilter === 'simple'? 'selected': ''}`}
+                            <button className={`simple ${typeFilter === 'simple' ? 'selected' : ''}`}
                                     onClick={() => handleFilterChange("type", "simple")}>simple
                             </button>
-                            <button className={`luxury ${typeFilter === 'luxury'? 'selected': ''}`}
+                            <button className={`luxury ${typeFilter === 'luxury' ? 'selected' : ''}`}
                                     onClick={() => handleFilterChange("type", "luxury")}>luxury
                             </button>
-                            <button className={`rugged ${typeFilter === 'rugged'? 'selected': ''}`}
+                            <button className={`rugged ${typeFilter === 'rugged' ? 'selected' : ''}`}
                                     onClick={() => handleFilterChange("type", "rugged")}>rugged
                             </button>
                         </div>

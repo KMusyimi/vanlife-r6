@@ -22,7 +22,7 @@ function About() {
                 </section>
             </section>
             <figure className='img-wrapper'>
-                <img className='camp-img' src={campImg} alt=
+                <img className='camp-img' src={`${campImg}`} alt=
                     'a black guy sitting on a camping van observng the stars'/>
             </figure>
         </div>

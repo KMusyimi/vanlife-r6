@@ -8,6 +8,7 @@ export default function Login() {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const prevPath = location.state?.prevPath || '/host';
 
     const [loginFormData, setLoginFormData] = useState({
         email: "", password: "",
@@ -23,7 +24,7 @@ export default function Login() {
                 const logins = await loginUser(loginFormData);
                 setError(null);
                 localStorage.setItem('loggedIn', true);
-                navigate('/host', {replace: true});
+                navigate(prevPath, {replace: true});
             } catch (err) {
                 setError(err);
             } finally {

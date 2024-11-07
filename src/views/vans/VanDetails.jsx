@@ -2,32 +2,40 @@ import {Link, useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {decode} from "html-entities";
 import Spinner from "../../components/Spinner.jsx";
+import {getVans} from "../../api.js";
 
 export default function VanDetails() {
-    const params = useParams();
+    const {id} = useParams();
     const [van, setVan] = useState(null);
     const location = useLocation();
+    const [error, setError] = useState(null)
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
-            setLoading(true);
-
-            const promise = await fetch(`/api/vans/${params.id}`);
-            const data = await promise.json();
-            setVan(data.vans);
-            setTimeout(() => setLoading(false), 500);
+            setLoading(true)
+            try {
+                const data = await getVans(id)
+                setVan(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setTimeout(() => setLoading(false), 500);
+            }
 
         }
 
         fetchData();
-    }, [params.id]);
+    }, [id]);
 
 
     if (loading) {
         return <Spinner/>
     }
-
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
     const {description, imageUrl, name, price, type} = van !== null && van;
     const search = location.state?.search || "";
     const searchType = location.state?.type || 'all'

@@ -3,12 +3,14 @@ import {decode} from "html-entities";
 import {useEffect, useState} from "react";
 import Nav from "../../components/Nav.jsx";
 import Spinner from "../../components/Spinner.jsx";
+import {getHostVans} from "../../api.js";
 
 
 export default function HostVanDetails() {
     const [van, setVan] = useState([]);
-    const params = useParams();
+    const {id} = useParams();
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const activeStyles = {
         color: 'hsla(0, 0%, 9%, 1)',
@@ -19,17 +21,25 @@ export default function HostVanDetails() {
 
     useEffect(() => {
         async function getHostVanDetails() {
-            setLoading(true);
-            const fetchPromise = await fetch(`/api/host/vans/${params.id}`);
-            const data = await fetchPromise.json();
-            setVan(data.vans);
-            setTimeout(() => setLoading(false), 500);
+            setLoading(true)
+            try {
+                const data = await getHostVans(id)
+                setVan(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setTimeout(() => setLoading(false), 500);
+            }
         }
+
         getHostVanDetails();
-    }, [params.id]);
+    }, [id]);
 
     if (loading) {
         return <Spinner/>
+    }
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
     }
     return (
         <div className="details-container">

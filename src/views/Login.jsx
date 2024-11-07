@@ -2,8 +2,7 @@ import {useState} from "react";
 
 export default function Login() {
     const [loginFormData, setLoginFormData] = useState({
-        email: "",
-        password: "",
+        email: "", password: "",
     })
 
     function handleSubmit(e) {
@@ -12,21 +11,19 @@ export default function Login() {
     }
 
     function handleChange(e) {
-        const {name, value, id} = e.target;
-        const label = document.querySelector(`label[for=${id}]`);
-
-        value === ''? label.className = '' : label.className = 'focus';
-
+        const {name, value} = e.target;
         setLoginFormData(prev => ({
             ...prev, [name]: value
         }));
     }
 
-    return (
-        <div className="login-container sect-width">
-            <header><h1 className='fw-700'>Sign in to your account</h1></header>
-            <form onSubmit={handleSubmit} className='login-form'>
-                <label htmlFor='email'> email </label>
+    return (<div className="login-container sect-width">
+        <header><h1 className='fw-700'>Sign in to your account</h1></header>
+        <form onSubmit={handleSubmit} className='login-form'>
+            <div className='input-wrapper'>
+                <label
+                    className={`${loginFormData.email !==''? 'not-empty':''}`}
+                    htmlFor='email'> email </label>
                 <input
                     id='email'
                     name='email'
@@ -36,7 +33,11 @@ export default function Login() {
                     placeholder='Email address'
                     value={loginFormData.email}
                 />
-                <label htmlFor='password'> password </label>
+            </div>
+            <div className='input-wrapper'>
+                <label
+                    className={`${loginFormData.password !==''? 'not-empty':''}`}
+                    htmlFor='password'> password </label>
                 <input
                     id='password'
                     name='password'
@@ -45,8 +46,8 @@ export default function Login() {
                     onChange={handleChange}
                     value={loginFormData.password}
                 />
-                <button type='submit' className='fw-700'>Log in</button>
-            </form>
-        </div>
-    )
+            </div>
+            <button type='submit' className='fw-700'>Log in</button>
+        </form>
+    </div>)
 }

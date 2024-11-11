@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {loginUser} from "../api";
+import { GiSurferVan } from "react-icons/gi";
 
 export default function Login() {
     const [error, setError] = useState(null);
@@ -44,6 +45,7 @@ export default function Login() {
     return (<div className="login-container sect-width">
         <header>
             {location.state?.message && <h1 className='banner err-msg'>{location.state.message}</h1>}
+            <GiSurferVan height={'3em'} width={'3em'} />
             <h1 className='fw-700'>Sign in to your account</h1>
             {error?.message && <p className='err-msg'>{error.message}</p>}
         </header>

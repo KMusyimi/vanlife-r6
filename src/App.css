@@ -595,7 +595,10 @@ body, .bg-color {
 .login-container header {
     text-align: center;
 }
-
+.login-container header > svg {
+    font-size: 5.55rem;
+    color: #FFB996;
+}
 .login-container h1 {
     font-size: clamp(1.625rem, 1.4083rem + 0.9245vw, 2rem);
     text-align: center;

@@ -1,42 +1,32 @@
-import {useEffect, useId, useState} from "react";
-import {Link, useSearchParams} from "react-router-dom";
+import {useId, useState} from "react";
+import {Link, useLoaderData, useNavigation, useSearchParams} from "react-router-dom";
 import {getVans} from "../../api";
 import Spinner from "../../components/Spinner.jsx";
 
-export default function Vans() {
-    const [vans, setVans] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+export function loader() {
+    return getVans();
+}
 
+
+export default function Vans() {
     const id = useId();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [error, setError] = useState(null);
+    const vans = useLoaderData();
+
+    // using the useNavigation() hook, we can check the state of the loader and display some
+    // kind of spinner in the UI to tell the user that deta is being fetched in the background.
+    const navigation = useNavigation();
+
+    if (navigation.state === 'loading') return <Spinner/>;
 
     const typeFilter = searchParams.get("type");
     const vansArr = typeFilter ? vans.filter(van => typeFilter === van.type) : vans;
 
-    useEffect(() => {
-        async function getVansData() {
-            setLoading(true);
-            try {
-                const data = await getVans();
-                setVans(data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setTimeout(() => setLoading(false), 500);
-            }
-
-        }
-
-        getVansData();
-    }, []);
-
-    if (loading) {
-        return <Spinner/>
-    }
-    if(error){
+    if (error) {
         return <h1 aria-live='assertive'>There was an error: {error.message}</h1>
     }
+
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {
             if (value === null) {

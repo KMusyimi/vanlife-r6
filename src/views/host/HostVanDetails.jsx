@@ -1,16 +1,19 @@
-import {Link, NavLink, Outlet, useParams} from "react-router-dom";
+import {Await, Link, NavLink, Outlet, useLoaderData} from "react-router-dom";
 import {decode} from "html-entities";
-import {useEffect, useState} from "react";
 import Nav from "../../components/Nav.jsx";
+import {getVan} from "../../api.js";
+import {requireAuth} from "../../utils.js";
+import {Suspense} from "react";
 import Spinner from "../../components/Spinner.jsx";
-import {getHostVans} from "../../api.js";
 
+// eslint-disable-next-line react-refresh/only-export-components
+export async function hostVanDetailsLoader({params, request}) {
+    await requireAuth(request);
+    return {hostVans: getVan(params.id)};
+}
 
 export default function HostVanDetails() {
-    const [van, setVan] = useState([]);
-    const {id} = useParams();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const vanDetails = useLoaderData();
 
     const activeStyles = {
         color: 'hsla(0, 0%, 9%, 1)',
@@ -19,43 +22,18 @@ export default function HostVanDetails() {
         fontWeight: 700
     }
 
-    useEffect(() => {
-        async function getHostVanDetails() {
-            setLoading(true)
-            try {
-                const data = await getHostVans(id)
-                setVan(data)
-            } catch (err) {
-                setError(err)
-            } finally {
-                setTimeout(() => setLoading(false), 500);
-            }
-        }
-
-        getHostVanDetails();
-    }, [id]);
-
-    if (loading) {
-        return <Spinner/>
-    }
-    if (error) {
-        return <h1>There was an error: {error.message}</h1>
-    }
-    return (
-        <div className="details-container">
-            <Link to='..' relative='path' className='back-link'>
-                <span className='left-arr'>{decode('&larr;')}</span>
-                <span>Back to all vans</span>
-            </Link>
+    function renderVanDetails(van) {
+        const {imageUrl, name, price, type} = van !== null && van;
+        return (
             <div className='host-van-info'>
                 <figure>
                     <div>
-                        <p className={`tag tag-${van.type}`}>{van.type}</p>
-                        <p className='van-name'>{van.name}</p>
-                        <p className='price-wrapper'><span className='price fw-700'>${van.price}</span>
+                        <p className={`tag tag-${type}`}>{type}</p>
+                        <p className='van-name'>{name}</p>
+                        <p className='price-wrapper'><span className='price fw-700'>${price}</span>
                             <span className='period'>/day</span></p>
                     </div>
-                    <img className='card-img' src={van.imageUrl} loading='lazy' alt={`a sample image of ${van.name}`}/>
+                    <img className='card-img' src={imageUrl} loading='lazy' alt={`a sample image of ${name}`}/>
                 </figure>
                 <Nav className="nav">
                     <ul className='nav-list'>
@@ -63,7 +41,7 @@ export default function HostVanDetails() {
                             <NavLink
                                 to='.'
                                 end
-                                style={({isActive}) => isActive ? activeStyles : null}
+                                    style={({isActive}) => isActive ? activeStyles : null}
                             >Details</NavLink>
                         </li>
                         <li>
@@ -82,5 +60,19 @@ export default function HostVanDetails() {
                 </Nav>
                 <Outlet context={van}/>
             </div>
+        )
+    }
+
+    return (
+        <div className="details-container">
+            <Link to='..' relative='path' className='back-link'>
+                <span className='left-arr'>{decode('&larr;')}</span>
+                <span>Back to all vans</span>
+            </Link>
+            <Suspense fallback={<Spinner/>}>
+                <Await resolve={vanDetails.hostVans}>
+                    {renderVanDetails}
+                </Await>
+            </Suspense>
         </div>)
 }

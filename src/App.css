@@ -614,7 +614,7 @@ body, .bg-color {
     margin-bottom: 1.25em;
 }
 
-.login-container .err-msg {
+.err-msg {
     margin-bottom: 2.25em;
     color: #F95454;
 }

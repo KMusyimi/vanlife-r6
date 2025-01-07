@@ -1,38 +1,20 @@
-import {useEffect, useId, useState} from "react";
-import {Link} from "react-router-dom";
-import Spinner from "../../components/Spinner.jsx";
+import {Suspense, useId} from "react";
+import {Await, Link, useLoaderData} from "react-router-dom";
 import {getHostVans} from "../../api.js";
+import {requireAuth} from "../../utils";
+import Spinner from "../../components/Spinner.jsx";
 
-// TODO: add spinners
+export async function hostVansLoader({request}) {
+    await requireAuth(request);
+    return {hostVans: getHostVans()};
+}
+
 function HostVans() {
     const id = useId();
-    const [hostVans, setHostVans] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    useEffect(() => {
-        async function getVans() {
-            setLoading(true)
-            try {
-                const data = await getHostVans()
-                setHostVans(data)
-            } catch (err) {
-                setError(err)
-            } finally {
-                setTimeout(() => setLoading(false), 500);
-            }
-        }
+    const vans = useLoaderData();
 
-        getVans();
-    }, []);
-
-    if (loading) {
-        return <Spinner/>
-    }
-    if (error) {
-        return <h1>There was an error: {error.message}</h1>
-    }
-    const vansListItems = () => {
-        return hostVans !== null && hostVans.map((van, idx) => {
+    const vansListItems = (vans) => {
+        return vans !== null && vans.map((van, idx) => {
             return (
                 <li key={`${id}-${idx}`}>
                     <Link to={`${van.id}`}>
@@ -49,10 +31,19 @@ function HostVans() {
 
     return (
         <>
-            <header><h1 className='fw-700'>Your listed vans</h1></header>
-            <div className='vans-container'>
-                <ul className='van-list'>{vansListItems()}</ul>
-            </div>
+            <header>
+                <h1 className='fw-700'>Your listed vans</h1>
+            </header>
+            <Suspense fallback={<Spinner/>}>
+                <Await resolve={vans.hostVans}>
+                    {(loadedVans) => {
+                        return (
+                            <div className='vans-container'>
+                                <ul className='van-list'>{vansListItems(loadedVans)}</ul>
+                            </div>)
+                    }}
+                </Await>
+            </Suspense>
         </>)
 }
 

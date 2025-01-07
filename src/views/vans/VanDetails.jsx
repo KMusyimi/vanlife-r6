@@ -1,47 +1,23 @@
-import {Link, useLocation, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {Await, Link, useLoaderData, useLocation} from "react-router-dom";
 import {decode} from "html-entities";
 import Spinner from "../../components/Spinner.jsx";
-import {getVans} from "../../api.js";
+import {getVan} from "../../api.js";
+import {Suspense} from "react";
+
+export async function vanDetailsLoader({params}) {
+    return {van: getVan(params.id)};
+}
 
 export default function VanDetails() {
-    const {id} = useParams();
-    const [van, setVan] = useState(null);
+    const vanDetails = useLoaderData();
     const location = useLocation();
-    const [error, setError] = useState(null)
 
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        async function fetchData() {
-            setLoading(true)
-            try {
-                const data = await getVans(id)
-                setVan(data)
-            } catch (err) {
-                setError(err)
-            } finally {
-                setTimeout(() => setLoading(false), 500);
-            }
-
-        }
-
-        fetchData();
-    }, [id]);
-
-
-    if (loading) {
-        return <Spinner/>
-    }
-    if (error) {
-        return <h1>There was an error: {error.message}</h1>
-    }
-    const {description, imageUrl, name, price, type} = van !== null && van;
-    const search = location.state?.search || "";
-    const searchType = location.state?.type || 'all'
-    return (
-        <div className='bg-color'>
-            <div className='details-container sect-width'>
+    function renderVanDetails(van) {
+        const {description, imageUrl, name, price, type} = van !== null && van;
+        const search = location.state?.search || "";
+        const searchType = location.state?.type || 'all'
+        return (
+            <>
                 <Link
                     to={`..${search}`}
                     relative='path'
@@ -49,7 +25,6 @@ export default function VanDetails() {
                     <span className='left-arr'>{decode('&larr;')}</span>
                     <span>Back to {searchType} vans</span>
                 </Link>
-
                 <article className='van-details-card '>
                     <section>
                         <p className={`tag tag-${type}`}>{type}</p>
@@ -63,6 +38,20 @@ export default function VanDetails() {
                              alt={`a sample image of ${name}`}/>
                     </figure>
                 </article>
+            </>
+        )
+    }
+
+    return (
+        <div className='bg-color'>
+            <div className='details-container sect-width'>
+
+                <Suspense fallback={<Spinner/>}>
+                    <Await resolve={vanDetails.van}>
+                        {renderVanDetails}
+                    </Await>
+                </Suspense>
+
             </div>
         </div>
     )
